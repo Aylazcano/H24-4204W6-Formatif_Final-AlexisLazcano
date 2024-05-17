@@ -54,10 +54,10 @@ namespace h23final_serveur.Controllers
 			
             Reaction? reaction = null;
 
-            if (reaction == null || user == null)
+            /*if (reaction == null || user == null)
             {
                 return NotFound("Réaction non trouvée ou utilisateur non trouvé !");
-            }
+            }*/
 
             // ███ À compléter ███
 

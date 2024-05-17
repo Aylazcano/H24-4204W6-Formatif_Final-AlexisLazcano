@@ -84,7 +84,12 @@ namespace h23final_serveur.Controllers
             }
 
             // ███ Ajouter du code ici ███
-            Message? message = null; // Ce message vide devra être remplacé par un vrai message
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            User? user = await _context.Users.FindAsync(userId);
+
+            Message? message = await _context.Message.FindAsync(id); // Ce message vide devra être remplacé par un vrai message
+
+            if (user == null || !user.Messages.Contains(message)) return Unauthorized();
 
             // Code pour supprimer toutes les réactions du message. Ne pas toucher.
             if (message.Reactions != null)
@@ -98,6 +103,8 @@ namespace h23final_serveur.Controllers
             }
 
             // ███ Ajouter du code ici ███
+            _context.Remove(message);
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
