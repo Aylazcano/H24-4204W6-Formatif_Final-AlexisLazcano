@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="channels">
+    <h3>Salons textuels 💬</h3>
+
+    <!-- Liste des canaux de discussion -->
+    <div *ngFor="let c of channelList" (click)="selectChannel(c)" [class]="selectedChannel && selectedChannel.id == c.id ? 'selectedChannel' : 'notSelectedChannel'"># {{c.name}}</div>
+    <hr>
+
+    <!-- Formulaire PRESQUE COMPLET pour créer un nouveau Channel -->
+    <div id="newChannel">
+      <input type="text" name="newChannelName"><button (click)="postChannel()">Nouveau canal</button>
+    </div>
+    
+  </div>
+  
+  <div class="messages">
+
+    <!-- Nom du canal sélectionné -->
+    <div class="channelTitle">{{selectedChannel != null ? '# ' + selectedChannel.name : 'Sélectionnez un salon... 🧠'}}</div>
+    <div class="messageList">
+      
+      <!-- Boucle qui affiche les messages -->
+      <div class="singleMessage" *ngFor="let m of messageList">
+
+        <div class="avatar">
+          <img src="assets/images/avatar.png" alt="Avatar">
+        </div>
+
+        <div class="messageArea">
+
+          <div class="close" (click)="deleteMessage(m.id)">❌</div>
+
+          <div class="date">{{m.sentAt | date:"yyyy-MM-dd hh:mm:ss"}}</div>
+
+          <!-- Auteur du message -->
+          <div class="nickname">{{m.userName}}</div>
+
+          <!-- Texte du message -->
+          <div class="text">{{m.text}}</div>
+
+          <div class="reactions">
+
+            <!-- Afifchage des réactions par message -->
+            <div class="singleReaction" *ngFor="let r of m.reactions">
+              <img [src]="'https://localhost:7004/api/Reactions/GetReactionPicture/' + r.id" alt="Reaction" (click)="toggleReaction(r.id, m)">
+              <div>{{r.quantity}}</div>
+            </div>
+            <div class="singleReaction" (click)="selectMessage(true, m)">
+              ➕
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulaire pour poster un nouveau message dans le canal sélectionné -->
+    <div class="newMessage">
+      <div>
+        <textarea [(ngModel)]="messageTextInput" placeholder="Écrivez un message dans # général | 📢 ..."></textarea>
+      </div>
+      <div>
+        <button><img src="assets/images/envoyer.png" alt="Envoyer" (click)="postMessage()"></button>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+<!-- Formulaire pour ajouter une réaction à un message -->
+
+
+<div class="newReactionOverlay" *ngIf="reactionOverlayOn">
+  <div class="close" (click)="selectMessage(false, null)">
+    ❌
+  </div>
+  <div class="newReaction">
+    <input type="file" #newReactionFile><button (click)="postReaction()">Réagir</button>
+  </div>
+</div>

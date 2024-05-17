@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="login">
+
+    <div>
+      <h3>Connexion</h3>
+      <table>
+        <tr>
+          <td>Nom d'utilisateur</td>
+          <td><input type="text" name="loginUsername" [(ngModel)]="loginUsername"></td>
+        </tr>
+        <tr>
+          <td>Mot de passe</td>
+          <td><input type="text" name="loginPassword" [(ngModel)]="loginPassword"></td>
+        </tr>
+      </table>
+      <button (click)="login()">Se connecter</button>
+    </div>
+    
+  </div>
+  <div class="register">
+
+    <div>
+      <h3>Inscription</h3>
+      <table>
+        <tr>
+          <td>Nom d'utilisateur</td>
+          <td><input type="text" name="registerUsername" [(ngModel)]="registerUsername"></td>
+        </tr>
+        <tr>
+          <td>Mot de passe</td>
+          <td><input type="text" name="registerPassword" [(ngModel)]="registerPassword"></td>
+        </tr>
+        <tr>
+          <td>Confirmer le mot de passe</td>
+          <td><input type="text" name="registerPasswordConfirm" [(ngModel)]="registerPasswordConfirm"></td>
+        </tr>
+      </table>
+      <button (click)="register()">S'inscrire</button>
+    </div>
+    
+  </div>
+</div>

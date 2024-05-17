@@ -1,0 +1,15 @@
+.login, .register{
+    flex:1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px 0px;
+}
+
+.login h3, .register h3{
+    margin:3px;
+}
+
+td:last-child{
+    padding-left:10px;
+}

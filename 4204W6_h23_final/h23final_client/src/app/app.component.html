@@ -1,0 +1,16 @@
+<header>
+  <img src="assets/images/logo.png" alt="Logo">
+  <div class="title" [routerLink]="['chat']">Dix cordes</div>
+  <div class="spacer"></div>
+  <div [routerLink]="['chat']">Chat</div>
+  <div [routerLink]="['login']">Connexion</div>
+  <div (click)="prank()">🌙</div>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  &copy; Examen final - 4204W6 - Hiver 2023
+</footer>

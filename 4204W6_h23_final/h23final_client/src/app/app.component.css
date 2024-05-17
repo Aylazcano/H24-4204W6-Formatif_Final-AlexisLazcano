@@ -1,0 +1,40 @@
+footer{
+    text-align: center;
+    font-size:0.8em;
+}
+
+header,footer{
+    padding:5px;
+    border:lightgray 1px solid;
+    width:1000px;
+    margin:auto;
+    background-color: white;
+}
+
+main{
+    width:1010px;
+    margin:auto;
+}
+
+header img{
+    height:50px;
+}
+
+header>div{
+    margin-left:5px;
+    margin-right:5px;
+    cursor:pointer;
+}
+
+header{
+    display:flex;
+    align-items:center;
+}
+
+.title{
+    font-size:1.5em;
+}
+
+.spacer{
+    flex:1;
+}
