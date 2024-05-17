@@ -3,6 +3,7 @@ import { ChatService } from '../services/chat.service';
 import { Channel } from '../models/channel';
 import { Message } from '../models/message';
 import { Reaction } from '../models/reaction';
+import { window } from 'rxjs';
 
 @Component({
   selector: 'app-channels',
@@ -20,6 +21,9 @@ export class ChannelsComponent implements OnInit {
   messageTextInput : string = "";
 
   reactionOverlayOn : boolean = false;
+
+  newChannelName : string = "";
+
   @ViewChild("newReactionFile", {static:false}) newNeactionFile ?: ElementRef;
 
   constructor(public chatService : ChatService) { }
@@ -47,6 +51,12 @@ export class ChannelsComponent implements OnInit {
     
     // Allo 👋
     // Ce n'est pas grave si jamais il faut réactualiser la page pour voir le nouveau channel.
+  if(this.newChannelName){
+    let newChannel = await this.chatService.postChannelRequest(this.newChannelName);
+    this.channelList.push(newChannel);
+    this.newChannelName = "";
+    this.getChannel();
+  }
 
   }
 

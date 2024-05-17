@@ -34,5 +34,17 @@ namespace h23final_serveur.Controllers
         }
 
         // ███ Ajoutez une action ici ███
+        [HttpPost]
+        [Authorize(Roles = "moderator")]
+        public async Task<ActionResult<Channel>> PostChannel(Channel channel)
+        {
+            if (_context.Channel == null) return StatusCode(StatusCodes.Status500InternalServerError,
+                new { Message = "Veuillez réessayer plus tard." });
+
+            _context.Channel.Add(channel);
+            await _context.SaveChangesAsync();
+
+            return Ok(channel);
+        }
     }
 }
